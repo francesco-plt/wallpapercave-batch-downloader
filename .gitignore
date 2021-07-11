@@ -1,0 +1,7 @@
+*
+
+!.gitignore
+!wallpapercave-batch-downloader.py
+!requirements.txt
+
+!*/

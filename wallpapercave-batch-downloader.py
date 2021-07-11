@@ -7,14 +7,16 @@ from bs4 import BeautifulSoup
 import pathlib
 from progress.bar import Bar
 import subprocess
+import sys
 
 pwd = pathlib.Path(__file__).parent.resolve()
 
 # specify the url
-url = input("wallpapercave collection url: ")
+url = sys.argv[1]
+print("wallpapercave collection url: '" + url + "'")
 
 # query the website and return the html to the variable ‘page’
-print("requesting '", url, "'...")
+print("requesting '" + url + "'...")
 http = urllib3.PoolManager()
 response = http.request('GET', url)
 
@@ -34,16 +36,12 @@ try:
 except OSError:
     print("Creation of the directory '", pdw, "' failed")
 else:
-    print("Successfully created/reused the directory '", foldername, "'")
+    print("Successfully created/reused the directory '" + foldername + "'")
 
-with Bar("downloading...") as bar:
+# downloading files
+with Bar("downloading...", max=len(links)) as bar:
     for link in links:
         tmp = requests.get(link)
         filepath = os.path.join(str(pwd), foldername, link.rsplit('/',1)[1].replace("?", "") + ".png")
         open(filepath, 'wb').write(tmp.content)
-        sleep(0.02)
         bar.next()
-
-print("finished")
-print("opening download folder...")
-os.startfile(foldername)

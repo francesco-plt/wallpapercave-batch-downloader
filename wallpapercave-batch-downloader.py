@@ -34,7 +34,7 @@ foldername = os.path.join(str(pwd), url.rsplit('/',1)[1])
 try:
     pathlib.Path(foldername).mkdir(parents=True, exist_ok=True)
 except OSError:
-    print("Creation of the directory '", pdw, "' failed")
+    print("Creation of the directory '" + pdw + "' failed")
 else:
     print("Successfully created/reused the directory '" + foldername + "'")
 

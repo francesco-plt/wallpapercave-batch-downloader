@@ -1,19 +1,23 @@
 #!/usr/local/bin/python3
 import urllib3
 import requests
-from time import sleep
 import os
-from bs4 import BeautifulSoup
 import pathlib
-from progress.bar import Bar
-import subprocess
 import sys
+from bs4 import BeautifulSoup
+from time import sleep
+from argparse import ArgumentParser
+from progress.bar import Bar
 
-pwd = pathlib.Path(__file__).parent.resolve()
-
-# specify the url
-url = sys.argv[1]
+# parsing the url from the command line
+parser = ArgumentParser(description='small script to download wallpaper from wallpapercave.com')
+parser.add_argument('--url', help='link to the wallpaper collection', required=True)
+args = vars(parser.parse_args())
+url = args['url']
 print("wallpapercave collection url: '" + url + "'")
+
+# getting current directory
+pwd = pathlib.Path(__file__).parent.resolve()
 
 # query the website and return the html to the variable ‘page’
 print("requesting '" + url + "'...")

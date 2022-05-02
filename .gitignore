@@ -3,5 +3,5 @@
 !.gitignore
 !wallpapercave-batch-downloader.py
 !requirements.txt
-
+!README.md
 !*/

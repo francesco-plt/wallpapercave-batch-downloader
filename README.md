@@ -8,4 +8,5 @@ $ python3 wbd.py <COLLECTION_URL>
 
 ## Notes
 
-Looks like wallpapercave added bot protection to the site, right now this script is not working.
+~~Looks like wallpapercave added bot protection to the site, right now this script is not working.~~
+

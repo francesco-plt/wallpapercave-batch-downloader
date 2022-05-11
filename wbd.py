@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os, pathlib
 from sys import argv
-from requests import get, post
+from requests import get, post, Session
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 from progress.bar import Bar
@@ -15,7 +15,9 @@ url = argv[1]
 # querying the website
 print("requesting '" + url + "'..")
 ua = UserAgent()
-r = get(url, headers={"User-Agent": ua.random})
+s = Session()
+s.headers.update({"User-Agent": ua.random})
+r = s.get(url)
 if r.status_code != 200:
     exit(f"error {r.status_code}. exiting..")
 
@@ -42,8 +44,10 @@ except OSError:
 # downloading files
 with Bar("downloading...", max=len(links)) as bar:
     for link in links:
-        tmp = get(link)
+        tmp = s.get(link)
+        if tmp.status_code != 200:
+            exit(f"error {tmp.status_code}. exiting..")
         # outdir/<FILENAME>
-        fpath = outdir + "/" + link.rsplit("/", 1)[1].replace("?", "") + ".png"
+        fpath = outdir + "/" + link.rsplit("/", 1)[1].replace("?", "") + ".jpg"
         open(fpath, "wb").write(tmp.content)
         bar.next()

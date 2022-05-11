@@ -9,7 +9,7 @@ from IPython import embed
 
 # parsing the url as cli argument
 if len(argv) != 2:
-    exit("Usage: python3 wbd.py <COLLECTION_NAME>")
+    exit("Usage: python3 wbd.py <COLLECTION_URL>")
 url = argv[1]
 
 # querying the website

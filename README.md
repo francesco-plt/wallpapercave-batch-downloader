@@ -3,10 +3,8 @@
 ## Usage
 
 ```shell
-$ python3 wbd.py <COLLECTION_NAME>
+$ python3 wbd.py <COLLECTION_URL>
 ```
-
-* `URL`: url of the collection of wallpapers you want to download
 
 ## Notes
 

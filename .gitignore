@@ -1,7 +1,7 @@
 *
 
 !.gitignore
-!wallpapercave-batch-downloader.py
+!wbd.py
 !requirements.txt
 !README.md
 !*/
